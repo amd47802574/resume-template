@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!-- 匿名示例简历模板，用于展示排版与样式 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>示例简历模板</title>
+  <style>
+    :root {
+      --text-main: #222;
+      --text-sub: #555;
+      --accent: #2e75b6;
+      --line: #dce9f2;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Source Han Sans SC", "Noto Sans CJK SC", "思源黑体", "Microsoft YaHei", sans-serif;
+      color: var(--text-main);
+      background: #f0f2f5;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      width: 210mm;
+      min-height: 296mm;
+      margin: 20px auto;
+      background: #fff;
+      position: relative;
+      padding: 13mm 13mm 9mm;
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+    }
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 6px;
+      background: linear-gradient(90deg, #2e75b6, #6aa9d9);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .header-main { flex: 1; text-align: left; }
+    .name {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+    .contact-line {
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .contact-line span { margin: 0 6px; color: #bbb; }
+    .portrait {
+      width: 20mm;
+      height: 26mm;
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #8aa4bb;
+      background: #eaf1f7;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 15px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--line);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+    .section-title::before {
+      content: "";
+      width: 4px; height: 16px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .row {
+      display: flex;
+      align-items: baseline;
+      margin-top: 8px;
+      font-size: 12.5px;
+    }
+    .row .left { font-weight: 700; font-size: 13.5px; }
+    .row .center-part { flex: 1; text-align: center; font-weight: 700; font-size: 13.5px; }
+    .row .right { margin-left: auto; color: var(--text-sub); font-size: 12px; }
+    ul { list-style: none; margin-top: 6px; }
+    ul li {
+      font-size: 12.4px;
+      line-height: 1.68;
+      margin-top: 5px;
+      padding-left: 14px;
+      position: relative;
+    }
+    ul li::before {
+      content: "";
+      width: 5px; height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: .62em;
+    }
+    ul li b { color: #1f4e79; }
+    .entry-title-grid {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-top: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed var(--line);
+    }
+    .entry-title-grid .date { margin-left: auto; color: var(--text-sub); font-weight: 400; font-size: 12px; }
+    .numbered {
+      list-style: none;
+      counter-reset: item;
+      margin-top: 6px;
+    }
+    .numbered li {
+      counter-increment: item;
+      font-size: 12.4px;
+      line-height: 1.66;
+      margin-top: 6px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .numbered li::before {
+      content: counter(item) ".";
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+    }
+    .numbered b { color: #1f4e79; }
+    @page { size: A4; margin: 0; }
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; page-break-after: always; }
+      .page:last-child { page-break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <header class="header">
+      <div class="header-main">
+        <div class="name">张三</div>
+        <div class="contact-line">电话：138-0000-0000 <span>|</span> 邮箱：example@example.com</div>
+        <div class="contact-line">求职意向：示例岗位 <span>|</span> 入职时间：随时入职 <span>|</span> 可实习时长：6个月及以上</div>
+      </div>
+      <div class="portrait">照片</div>
+    </header>
+
+    <h2 class="section-title">教育经历</h2>
+    <div class="row"><div class="left">某某理工大学</div><div class="center-part">示例专业</div><div class="right">2023.09 - 2027.07</div></div>
+    <ul>
+      <li><b>学业表现：</b>GPA 3.8/5，专业排名前 1%</li>
+      <li><b>核心课程：</b>课程一、课程二、课程三、课程四、课程五</li>
+      <li><b>校内荣誉：</b>校级奖学金、三好学生、励志奖学金等</li>
+    </ul>
+
+    <h2 class="section-title">竞赛获奖</h2>
+    <ul>
+      <li>2025.12　示例竞赛一——国家级一等奖</li>
+      <li>2025.08　示例竞赛二——国家级二等奖</li>
+      <li>2025.06　示例竞赛三——国家级三等奖</li>
+    </ul>
+
+    <h2 class="section-title">专业技能</h2>
+    <ul>
+      <li><b>技能方向一：</b>掌握示例技术一、示例技术二、示例技术三，具备实际项目开发能力；</li>
+      <li><b>技能方向二：</b>熟悉示例框架、示例平台与示例协议，能够独立完成模块设计；</li>
+      <li><b>技能方向三：</b>熟悉常用开发工具与部署流程，具备工程化实践经验；</li>
+      <li><b>技能方向四：</b>了解示例方法，具备良好的沟通与团队协作能力。</li>
+    </ul>
+
+    <h2 class="section-title">项目经历</h2>
+    <div class="entry-title-grid"><div>示例项目一：基于示例技术的智能应用系统</div><div class="date">2025.01 - 2025.06</div></div>
+    <ul>
+      <li><b>项目描述：</b>面向示例场景，构建完整示例应用，实现功能模块一与功能模块二的联动；</li>
+      <li><b>技术栈：</b>示例语言、示例框架、示例数据库、示例部署工具</li>
+      <li><b>核心工作：</b>设计整体架构，完成主要功能开发，优化系统性能并完成部署。</li>
+    </ul>
+
+    <div class="entry-title-grid"><div>示例项目二：多模块协同管理系统</div><div class="date">2024.09 - 2024.12</div></div>
+    <ul>
+      <li><b>项目描述：</b>面向示例业务，实现多模块数据管理、可视化展示与权限控制；</li>
+      <li><b>核心工作：</b>负责后端接口开发与数据库设计，完成联调测试与上线部署。</li>
+    </ul>
+  </section>
+
+  <section class="page">
+    <h2 class="section-title">实习经历</h2>
+    <div class="entry-title-grid"><div>示例公司一　示例部门　示例岗位</div><div class="date">2025.05 - 2025.09</div></div>
+    <ul>
+      <li><b>项目描述：</b>参与示例业务系统建设，负责核心模块开发与优化；</li>
+      <li><b>技术栈：</b>示例技术一、示例技术二、示例技术三</li>
+    </ul>
+    <ol class="numbered">
+      <li><b>模块设计：</b>负责示例模块的架构设计与接口开发，完成核心功能落地；</li>
+      <li><b>性能优化：</b>优化数据处理流程，提升系统响应效率与稳定性；</li>
+      <li><b>协作交付：</b>配合产品与测试完成迭代上线，保障项目按期交付。</li>
+    </ol>
+
+    <div class="entry-title-grid"><div>示例公司二　示例部门　示例岗位</div><div class="date">2026.03 - 2026.05</div></div>
+    <ul>
+      <li><b>项目描述：</b>参与示例平台建设，负责数据处理与可视化模块开发；</li>
+      <li><b>核心工作：</b>完成数据接入、清洗、分析流程搭建，输出可视化报表。</li>
+    </ul>
+    <ol class="numbered">
+      <li><b>数据处理：</b>设计数据同步方案，提升数据更新效率；</li>
+      <li><b>功能开发：</b>实现示例功能模块，支持多维度查询与展示；</li>
+      <li><b>文档沉淀：</b>编写技术文档与使用说明，降低后续维护成本。</li>
+    </ol>
+  </section>
+</body>
+</html>
