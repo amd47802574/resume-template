@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<!-- 匿名示例简历模板，用于展示排版与样式 -->
+<!-- 示例简历模板，样式参照参考版式，所有文字均为虚构内容 -->
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>示例简历模板</title>
+  <title>示例简历模板_Java后端开发工程师</title>
   <style>
+    /* 全局字体与配色，保留参考简历的黑白蓝版式 */
     :root {
       --text-main: #222;
       --text-sub: #555;
       --accent: #2e75b6;
+      --accent-light: #dbeaf5;
       --line: #dce9f2;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +28,7 @@
       margin: 20px auto;
       background: #fff;
       position: relative;
-      padding: 13mm 13mm 9mm;
+      padding: 10mm 13mm 8mm;
       box-shadow: 0 4px 20px rgba(0,0,0,.12);
     }
     .page::before {
@@ -36,11 +38,12 @@
       width: 100%; height: 6px;
       background: linear-gradient(90deg, #2e75b6, #6aa9d9);
     }
+    /* 顶部姓名与联系方式 */
     .header {
       display: flex;
       align-items: center;
       gap: 20px;
-      padding-bottom: 10px;
+      padding-bottom: 7px;
       border-bottom: 1px solid var(--line);
     }
     .header-main { flex: 1; text-align: left; }
@@ -52,12 +55,16 @@
     }
     .contact-line {
       font-size: 12px;
-      line-height: 1.55;
+      line-height: 1.65;
+      color: var(--text-main);
     }
-    .contact-line span { margin: 0 6px; color: #bbb; }
+    .contact-line span { margin: 0 6px; color: var(--text-main); }
+    .contact-line span:first-child { margin-left: 0; }
+    .contact-line a { color: var(--accent); text-decoration: none; }
+    .contact-line.spaced span + span { margin-left: 2em; }
     .portrait {
       width: 20mm;
-      height: 26mm;
+      height: 24mm;
       border-radius: 4px;
       overflow: hidden;
       display: flex;
@@ -67,12 +74,13 @@
       color: #8aa4bb;
       background: #eaf1f7;
     }
+    /* 分节标题 */
     .section-title {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-top: 15px;
-      padding-bottom: 7px;
+      margin-top: 14px;
+      padding-bottom: 4px;
       border-bottom: 1px solid var(--line);
       font-size: 16px;
       font-weight: 700;
@@ -88,30 +96,52 @@
     .row {
       display: flex;
       align-items: baseline;
-      margin-top: 8px;
+      margin-top: 5px;
+      padding: 2px 0;
       font-size: 12.5px;
     }
     .row .left { font-weight: 700; font-size: 13.5px; }
     .row .center-part { flex: 1; text-align: center; font-weight: 700; font-size: 13.5px; }
     .row .right { margin-left: auto; color: var(--text-sub); font-size: 12px; }
-    ul { list-style: none; margin-top: 6px; }
+    ul {
+      list-style: none;
+      margin-top: 6px;
+    }
     ul li {
       font-size: 12.4px;
-      line-height: 1.68;
+      line-height: 1.6;
       margin-top: 5px;
       padding-left: 14px;
       position: relative;
     }
     ul li::before {
       content: "";
-      width: 5px; height: 5px;
+      width: 5px;
+      height: 5px;
       background: var(--accent);
       border-radius: 50%;
       position: absolute;
       left: 0;
       top: .62em;
     }
-    ul li b { color: #1f4e79; }
+    .bullet-content { margin-top: 3px; }
+    .skill li b, .project-item li b { color: #1f4e79; }
+    /* 项目与实习模块 */
+    .entry-title {
+      margin-top: 14px;
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .entry-link {
+      font-size: 12px;
+      color: var(--accent);
+      word-break: break-all;
+      line-height: 1.5;
+    }
+    .entry-link a { color: var(--accent); text-decoration: none; }
+    .meta-line { font-size: 12.4px; line-height: 1.68; margin-top: 6px; }
+    .meta-line b { color: #1f4e79; }
     .entry-title-grid {
       display: flex;
       align-items: baseline;
@@ -119,10 +149,12 @@
       font-size: 13.5px;
       font-weight: 700;
       margin-top: 10px;
-      padding-bottom: 4px;
+      padding-bottom: 3px;
       border-bottom: 1px dashed var(--line);
     }
     .entry-title-grid .date { margin-left: auto; color: var(--text-sub); font-weight: 400; font-size: 12px; }
+    .entry-title-grid .company { flex-shrink: 0; }
+    .entry-title-grid .dept, .entry-title-grid .role { font-weight: 700; font-size: 13px; }
     .numbered {
       list-style: none;
       counter-reset: item;
@@ -131,8 +163,8 @@
     .numbered li {
       counter-increment: item;
       font-size: 12.4px;
-      line-height: 1.66;
-      margin-top: 6px;
+      line-height: 1.7;
+      margin-top: 4px;
       padding-left: 20px;
       position: relative;
     }
@@ -141,88 +173,138 @@
       position: absolute;
       left: 0;
       font-weight: 700;
+      color: var(--text-main);
     }
     .numbered b { color: #1f4e79; }
-    @page { size: A4; margin: 0; }
+    /* 第二页内容较少，放大间距以填满整页 */
+    .page:nth-of-type(2) { padding: 15mm 13mm 11mm; }
+    .page:nth-of-type(2) .section-title { margin-top: 20px; padding-bottom: 6px; }
+    .page:nth-of-type(2) .entry-title { margin-top: 16px; }
+    .page:nth-of-type(2) .meta-line { line-height: 1.72; margin-top: 7px; }
+    .page:nth-of-type(2) .numbered li { line-height: 1.68; margin-top: 8px; }
+    .page:nth-of-type(2) ul li { line-height: 1.68; margin-top: 7px; }
+    .page:nth-of-type(2) ul li:last-child,
+    .page:nth-of-type(2) .numbered li:last-child { margin-bottom: 0; }
+    /* 打印设置：去掉背景阴影并固定分页 */
+    @page {
+      size: A4;
+      margin: 0;
+    }
     @media print {
       body { background: #fff; }
-      .page { margin: 0; box-shadow: none; page-break-after: always; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+      }
       .page:last-child { page-break-after: auto; }
+    }
+    @media screen and (max-width: 800px) {
+      .page { width: 100%; padding: 24px; }
     }
   </style>
 </head>
 <body>
+  <!-- 第一页：基本信息、教育、实习与项目经历开头 -->
   <section class="page">
     <header class="header">
       <div class="header-main">
-        <div class="name">张三</div>
-        <div class="contact-line">电话：138-0000-0000 <span>|</span> 邮箱：example@example.com</div>
-        <div class="contact-line">求职意向：示例岗位 <span>|</span> 入职时间：随时入职 <span>|</span> 可实习时长：6个月及以上</div>
+        <div class="name">李某某</div>
+        <div class="contact-line spaced">
+          <span>电话：139-0000-0000</span>
+          <span>　　　　邮箱：java.example@example.com</span>
+        </div>
+        <div class="contact-line spaced">
+          <span>意向岗位：Java后端开发工程师</span>
+          <span>入职时间：随时入职</span>
+          <span>可实习时长：6个月</span>
+        </div>
+        <div class="contact-line">
+          示例主页：<a href="https://example.com/java-demo">https://example.com/java-demo</a>
+        </div>
       </div>
       <div class="portrait">照片</div>
     </header>
 
     <h2 class="section-title">教育经历</h2>
-    <div class="row"><div class="left">某某理工大学</div><div class="center-part">示例专业</div><div class="right">2023.09 - 2027.07</div></div>
+    <div class="row"><div class="left">星海理工大学（示例）</div><div class="center-part">计算机科学与技术硕士（拟录取）</div><div class="right">2028.09 - 2031.07</div></div>
+    <div class="row"><div class="left">云溪学院（示例）</div><div class="center-part">软件工程学士</div><div class="right">2024.09 - 2028.07</div></div>
     <ul>
-      <li><b>学业表现：</b>GPA 3.8/5，专业排名前 1%</li>
-      <li><b>核心课程：</b>课程一、课程二、课程三、课程四、课程五</li>
-      <li><b>校内荣誉：</b>校级奖学金、三好学生、励志奖学金等</li>
+      <li><b>GPA：</b>3.6/4　|　<b>综合测评：</b>年级前 5%　|　<b>专业排名：</b>12/560　|　<b>英语水平：</b>CET6</li>
+      <li><b>核心课程：</b>Java程序设计（90）、操作系统（88）、算法设计（92）、分布式系统（95）、数据库系统（94）</li>
+      <li><b>校内荣誉：</b>学业一等奖学金、科技创新奖学金、优秀学生干部、开源社团技术讲师（2次）</li>
     </ul>
+
+    <h2 class="section-title">实习经历</h2>
+    <div class="entry-title-grid">
+      <div class="company">示例云链科技有限公司</div>
+      <div class="dept">交易平台研发部</div>
+      <div class="role">Java后端实习生</div>
+      <div class="date">2027.05 - 2027.09</div>
+    </div>
+    <p class="meta-line"><b>项目描述：</b>面向多商户交易场景，建设订单履约与库存联动服务，负责高并发下单、扣减库存、状态回执和异常补偿链路的后端实现。</p>
+    <p class="meta-line"><b>技术栈：</b>Java17、Spring Boot3、Spring Cloud、MySQL、Redis、RocketMQ、Nacos、Sentinel</p>
+    <p class="meta-line"><b>核心工作：</b></p>
+    <ol class="numbered">
+      <li><b>优化下单链路：</b>将串行校验重构为「参数校验→风控检查→库存锁定→订单落库」流水线，使用线程池隔离外部调用，峰值接口耗时下降约38%。</li>
+      <li><b>设计库存扣减：</b>基于Redis预扣减与MySQL乐观锁完成二级库存体系，结合幂等令牌防止重复提交，压测中未出现超卖与订单重复。</li>
+      <li><b>补齐事务补偿：</b>引入RocketMQ事务消息与本地事件表，封装重试、暂停与人工介入队列，保障订单、支付、库存三侧最终一致。</li>
+      <li><b>治理热点接口：</b>通过Sentinel配置限流、熔断与降级规则，为商户侧开放独立配额，大促演练期间成功拦截异常突发流量。</li>
+      <li><b>完善可观测性：</b>接入Micrometer与Prometheus，补充订单状态、MQ积压、慢SQL、线程池水位等指标，缩短线上问题定位时间。</li>
+      <li><b>沉淀开发规范：</b>整理接口出入参、异常码、日志与分页规范，封装统一返回组件，降低新同学接入成本。</li>
+    </ol>
+
+    <div class="entry-title-grid">
+      <div class="company">示例智数网络集团</div>
+      <div class="dept">基础平台组</div>
+      <div class="role">Java开发实习生</div>
+      <div class="date">2027.02 - 2027.05</div>
+    </div>
+    <p class="meta-line">参与 <b>Spring Cloud Gateway</b> 业务网关扩展开发，围绕 <b>鉴权、限流、灰度路由</b> 构建内部系统统一入口。</p>
+    <p class="meta-line"><b>主要工作：</b></p>
+    <ol class="numbered">
+      <li><b>动态路由发布：</b>基于Nacos监听路由配置变更，支持按服务标签、用户白名单与流量比例灰度切换，配置生效无需重启网关。</li>
+      <li><b>统一认证增强：</b>封装JWT解析、权限声明校验与租户标识透传过滤器，减少业务服务重复处理登录态。</li>
+      <li><b>接口防盗刷：</b>按用户、IP、URI组合维度设计滑动窗口限流，结合黑名单缓存拦截异常请求，网关层过滤效率明显提升。</li>
+      <li><b>链路日志治理：</b>在过滤器中注入TraceId，规范访问日志输出，并输出慢请求报表，方便按链路回放排查问题。</li>
+      <li><b>容器化联调：</b>编写Docker Compose配置，搭建网关、注册中心、示例服务和数据库的本地联调环境。</li>
+    </ol>
+  </section>
+
+  <!-- 第二页：项目经历、竞赛获奖与专业技能 -->
+  <section class="page">
+    <h2 class="section-title">项目经历</h2>
+    <div class="entry-title">项目名称：云枢交易台 - 基于 Spring Cloud 的高并发订单系统</div>
+    <div class="entry-link">
+      演示地址：https://example.com/order-demo　|　项目代码：https://example.com/java-order-repo
+    </div>
+    <p class="meta-line"><b>项目描述：</b>面向校园二手交易场景，从0到1搭建示例交易平台。基于Spring Cloud拆分订单、库存、支付回调、消息通知与运营后台模块，实现请求接入、异步处理、库存安全和数据看板的完整后端闭环。</p>
+    <p class="meta-line"><b>技术栈：</b>Java17、Spring Boot3、Spring Cloud Gateway、MyBatis Plus、MySQL、Redis、RocketMQ、Nacos、Sentinel、Docker、Prometheus</p>
+    <p class="meta-line"><b>负责内容：</b></p>
+    <ol class="numbered">
+      <li><b>服务拆分与接口设计：</b>按交易域划分六个子服务，使用OpenFeign完成内部调用，制定统一异常码、参数校验和响应结构，保证模块边界清晰。</li>
+      <li><b>高并发订单处理：</b>通过RocketMQ削峰，将订单创建、积分变更、消息通知拆为异步事件，压测场景下系统吞吐量提升约55%。</li>
+      <li><b>库存与支付一致性：</b>设计Redis预占、数据库扣减、支付回调对账流程，使用幂等表和状态机处理超时、重复与部分失败场景。</li>
+      <li><b>慢查询优化：</b>分析订单查询执行计划，增加覆盖索引并重写深分页语句，配合Redis缓存热点商户列表，核心查询响应时间下降60%。</li>
+      <li><b>稳定性与发布：</b>接入Sentinel限流熔断与Prometheus监控，编写滚动发布脚本，支持快速回滚和关键接口降级。</li>
+      <li><b>自动化验证：</b>使用JUnit5、Testcontainers与Mockito覆盖交易核心逻辑，沉淀下单、取消、退款等回归测试集。</li>
+    </ol>
 
     <h2 class="section-title">竞赛获奖</h2>
     <ul>
-      <li>2025.12　示例竞赛一——国家级一等奖</li>
-      <li>2025.08　示例竞赛二——国家级二等奖</li>
-      <li>2025.06　示例竞赛三——国家级三等奖</li>
+      <li>2027.11　示例高校程序设计邀请赛——一等奖</li>
+      <li>2027.06　示例软件创新应用挑战赛——二等奖</li>
+      <li>2026.10　示例数据库系统设计赛——省级二等奖</li>
     </ul>
 
     <h2 class="section-title">专业技能</h2>
-    <ul>
-      <li><b>技能方向一：</b>掌握示例技术一、示例技术二、示例技术三，具备实际项目开发能力；</li>
-      <li><b>技能方向二：</b>熟悉示例框架、示例平台与示例协议，能够独立完成模块设计；</li>
-      <li><b>技能方向三：</b>熟悉常用开发工具与部署流程，具备工程化实践经验；</li>
-      <li><b>技能方向四：</b>了解示例方法，具备良好的沟通与团队协作能力。</li>
+    <ul class="skill">
+      <li><b>Java 基础：</b>熟悉集合、反射、泛型与JVM内存结构，了解常用垃圾回收器与调优思路；掌握线程池、锁、CAS、CompletableFuture等并发工具；</li>
+      <li><b>后端框架：</b>熟悉Spring Boot、Spring MVC、MyBatis Plus，理解Bean生命周期与常用扩展点；了解Spring Cloud服务注册、网关、配置中心与远程调用；</li>
+      <li><b>数据与中间件：</b>熟悉MySQL索引、事务与执行计划分析，了解分库分表设计；熟悉Redis常见数据结构与缓存异常处理；了解RocketMQ顺序消息与事务消息；</li>
+      <li><b>工程化能力：</b>熟悉Git、Linux常用命令、Maven多模块管理；掌握Docker镜像构建与Compose编排，了解Jenkins流水线、Prometheus监控与日志排查；</li>
+      <li><b>其他能力：</b>熟悉常用数据结构与算法；习惯使用单元测试和接口文档协作，能阅读英文技术文档并维护开发说明。</li>
     </ul>
-
-    <h2 class="section-title">项目经历</h2>
-    <div class="entry-title-grid"><div>示例项目一：基于示例技术的智能应用系统</div><div class="date">2025.01 - 2025.06</div></div>
-    <ul>
-      <li><b>项目描述：</b>面向示例场景，构建完整示例应用，实现功能模块一与功能模块二的联动；</li>
-      <li><b>技术栈：</b>示例语言、示例框架、示例数据库、示例部署工具</li>
-      <li><b>核心工作：</b>设计整体架构，完成主要功能开发，优化系统性能并完成部署。</li>
-    </ul>
-
-    <div class="entry-title-grid"><div>示例项目二：多模块协同管理系统</div><div class="date">2024.09 - 2024.12</div></div>
-    <ul>
-      <li><b>项目描述：</b>面向示例业务，实现多模块数据管理、可视化展示与权限控制；</li>
-      <li><b>核心工作：</b>负责后端接口开发与数据库设计，完成联调测试与上线部署。</li>
-    </ul>
-  </section>
-
-  <section class="page">
-    <h2 class="section-title">实习经历</h2>
-    <div class="entry-title-grid"><div>示例公司一　示例部门　示例岗位</div><div class="date">2025.05 - 2025.09</div></div>
-    <ul>
-      <li><b>项目描述：</b>参与示例业务系统建设，负责核心模块开发与优化；</li>
-      <li><b>技术栈：</b>示例技术一、示例技术二、示例技术三</li>
-    </ul>
-    <ol class="numbered">
-      <li><b>模块设计：</b>负责示例模块的架构设计与接口开发，完成核心功能落地；</li>
-      <li><b>性能优化：</b>优化数据处理流程，提升系统响应效率与稳定性；</li>
-      <li><b>协作交付：</b>配合产品与测试完成迭代上线，保障项目按期交付。</li>
-    </ol>
-
-    <div class="entry-title-grid"><div>示例公司二　示例部门　示例岗位</div><div class="date">2026.03 - 2026.05</div></div>
-    <ul>
-      <li><b>项目描述：</b>参与示例平台建设，负责数据处理与可视化模块开发；</li>
-      <li><b>核心工作：</b>完成数据接入、清洗、分析流程搭建，输出可视化报表。</li>
-    </ul>
-    <ol class="numbered">
-      <li><b>数据处理：</b>设计数据同步方案，提升数据更新效率；</li>
-      <li><b>功能开发：</b>实现示例功能模块，支持多维度查询与展示；</li>
-      <li><b>文档沉淀：</b>编写技术文档与使用说明，降低后续维护成本。</li>
-    </ol>
   </section>
 </body>
 </html>
